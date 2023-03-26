@@ -1,9 +1,11 @@
+import ColumnBasedWeekView from "./components/ColumnBasedWeekView";
+
 function App() {
-  return (
-		<div className="grid">
-			<h1 className="mx-auto text-5xl font-semibold">Base remo</h1>
+	return (
+		<div className="flex flex-col">
+			<ColumnBasedWeekView />
 		</div>
-  );
+	);
 }
 
-export default App
+export default App;
