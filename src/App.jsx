@@ -2,7 +2,7 @@ import ColumnBasedWeekView from "./components/ColumnBasedWeekView";
 
 function App() {
 	return (
-		<div className="flex flex-col">
+		<div className="font-primary origin-top-left scale-75">
 			<ColumnBasedWeekView />
 		</div>
 	);

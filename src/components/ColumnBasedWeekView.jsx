@@ -1,15 +1,12 @@
+import DayTimeBlocks from "./DayTimeBlocks";
+import calendarData from "../data/calendarData";
+
 export default function ColumnBasedWeekView() {
 	return (
 		<div className="m-4">
-			<div className="grid grid-cols-8">
+			<div className="flex flex-row">
 				{timeGutter()}
-				{dayColumn("Montag")}
-				{dayColumn("Dienstag")}
-				{dayColumn("Mittwoch")}
-				{dayColumn("Donnerstag")}
-				{dayColumn("Freitag")}
-				{dayColumn("Samstag")}
-				{dayColumn("Sonntag")}
+				{calendarData.map((dayBlock) => dayColumn(dayBlock))}
 			</div>
 		</div>
 	);
@@ -18,10 +15,10 @@ export default function ColumnBasedWeekView() {
 function timeGutter() {
 	const n = 11;
 	return (
-		<div className="border-r-2 border-dashed text-center">
-			<div className="py-8 border-b-2 border-dashed bg-gray-100">
+		<div className="border-r-2 border-dashed text-center shadow-md">
+			<div className="py-8 border-b-2 border-dashed bg-gray-100 w-32">
 				<div className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
-					<div className="text-2xl font-bold font-mono">Fuck you</div>
+					<div className="text-xl font-bold font-mono max-h-8">Fuck you</div>
 				</div>
 			</div>
 			{[...Array(n)].map((e, i) => timeGutterTimeDelimiter(buildTimeString(i)))}
@@ -34,19 +31,20 @@ function buildTimeString(arrIdx) {
 }
 
 const blankBoxSpaced = (
-	<div className="box-border border-b-2 py-8">
-		<div className="text-lg opacity-0">.</div>
+	<div className="box-border border-b-2 py-8 text-lg">
+        <br />
 	</div>
 );
-function dayColumn(dayName) {
+function dayColumn(dayBlock) {
 	const n = 11;
 	return (
-		<div className="border-r-2 border-dashed border-gray-200 text-center">
-			<div className="py-8 border-b-2 border-dashed bg-gray-100 shadow-lg">
+		<div className="relative border-r-2 border-dashed border-gray-200 text-center w-40">
+			<div className="py-8 border-b-2 border-dashed bg-gray-100 shadow-lg w-36">
 				<div className="bg-gradient-to-r from-fuchsia-500 to-pink-500 bg-clip-text text-transparent">
-					<div className="text-2xl font-bold font-mono">{dayName}</div>
+					<div className="text-xl font-bold font-mono">{dayBlock.dayName}</div>
 				</div>
 			</div>
+            <DayTimeBlocks timeBlocks={dayBlock.dayBlocks} />
 			{[...Array(n)].map((e, i) => blankBoxSpaced)}
 		</div>
 	);
